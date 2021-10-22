@@ -149,6 +149,11 @@ $("#task-form-modal .btn-primary").click(function() {
   }
 });
 
+
+$("#modalDueDate").datepicker({
+  minDate: 1
+});
+
 // task text was clicked
 $(".list-group").on("click", "p", function() {
   // get current text of p element
@@ -205,12 +210,17 @@ $(".list-group").on("click", "span", function() {
     .val(date);
   $(this).replaceWith(dateInput);
 
+  // enable jquery ui datepicker
+  dateInput.datepicker({
+    minDate: 1
+  });
+
   // automatically bring up the calendar
   dateInput.trigger("focus");
 });
 
-// value of due date was changed
 $(".list-group").on("change", "input[type='text']", function() {
+
   var date = $(this).val();
 
   // get status type and position in the list
@@ -242,6 +252,8 @@ $("#remove-tasks").on("click", function() {
   console.log(tasks);
   saveTasks();
 });
+
+
 
 // load tasks for the first time
 loadTasks();
