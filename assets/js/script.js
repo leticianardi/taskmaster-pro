@@ -62,7 +62,6 @@ var loadTasks = function() {
 
   // loop over object properties
   $.each(tasks, function(list, arr) {
-    console.log(list, arr);
     // then loop over sub-array
     arr.forEach(function(task) {
       createTask(task.text, task.date, list);
@@ -82,16 +81,12 @@ $(".card .list-group").sortable({
   tolerance: "pointer",
   helper: "clone",
   activate: function(event, ui) {
-    console.log(ui);
   },
   deactivate: function(event, ui) {
-    console.log(ui);
   },
   over: function(event) {
-    console.log(event);
   },
   out: function(event) {
-    console.log(event);
   },
   update: function() {
     var tempArr = [];
@@ -137,10 +132,8 @@ $("#trash").droppable({
 
   },
   over: function(event, ui) {
-    console.log(ui);
   },
   out: function(event, ui) {
-    console.log(ui);
   }
 });
 
@@ -290,7 +283,11 @@ $("#remove-tasks").on("click", function() {
   saveTasks();
 });
 
-
+setInterval(function () {
+  $(".card .list-group-item").each(function(index, el) {
+    auditTask(el);
+  });
+}, 1800000);
 
 // load tasks for the first time
 loadTasks();
